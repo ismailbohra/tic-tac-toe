@@ -1,14 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import GamePage from "./pages/GamePage";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import MakeRoom from "./pages/MakeRoom";
+import RoomGame from "./pages/RoomGame";
+import MainPage from "./pages/MainPage";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/game/:roomId" element={<GamePage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/makeRoom" element={<MakeRoom />} />
+        <Route path="/game/:roomId" element={<RoomGame />} />
       </Routes>
     </Router>
   );

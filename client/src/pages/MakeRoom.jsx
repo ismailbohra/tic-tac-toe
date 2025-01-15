@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RoomForm from "../components/RoomForm";
 
-const HomePage = () => {
+const MakeRoom = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("HomePage rendered");
+    console.log("MakeRoom rendered");
   }, []);
 
   const handleSubmit = (roomId, playerName) => {
@@ -39,4 +39,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default MakeRoom;

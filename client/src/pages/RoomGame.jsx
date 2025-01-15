@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { socket } from "../socket";
 
-const GamePage = () => {
+const RoomGame = () => {
   const { roomId } = useParams();
   const [roomState, setRoomState] = useState(null);
   const location = useLocation();
@@ -124,4 +124,4 @@ const GamePage = () => {
   );
 };
 
-export default GamePage;
+export default RoomGame;
