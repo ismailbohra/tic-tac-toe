@@ -1,8 +1,10 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
 
 function MainPage() {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -37,6 +39,7 @@ function MainPage() {
                     color: "white",
                   },
                 }}
+                onClick={()=>navigate('/aimatch')}
               >
                 <Typography
                   fontSize={{ xs: 17, md: 35 }}
@@ -66,6 +69,7 @@ function MainPage() {
                     color: "white",
                   },
                 }}
+                onClick={()=>navigate('/quickmatch')}
               >
                 <Typography
                   fontSize={{ xs: 17, md: 35 }}
@@ -99,6 +103,7 @@ function MainPage() {
                       color: "white",
                     },
                   }}
+                  onClick={()=>navigate('/makeroom')}
                 >
                   <Typography
                     fontSize={{ xs: 17, md: 35 }}
