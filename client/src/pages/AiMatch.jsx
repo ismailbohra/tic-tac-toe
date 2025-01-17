@@ -62,7 +62,7 @@ const AiMatch = () => {
 
     const leaveRoom = () => {
       sessionStorage.removeItem(`joined_${roomId}`);
-      fetch("http://localhost:4000/api/rooms/exit", {
+      fetch("/api/rooms/exit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ roomId, playerName }),

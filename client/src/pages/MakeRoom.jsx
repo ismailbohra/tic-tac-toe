@@ -31,7 +31,7 @@ const MakeRoom = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({playerName}),
     };
-    fetch("http://localhost:4000/api/rooms/create", requestOptions)
+    fetch("/api/rooms/create", requestOptions)
       .then((response) => response.json())
       .then((data) => navigate(`/game?roomId=${data.roomId}`));
   };
