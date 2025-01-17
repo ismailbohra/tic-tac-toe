@@ -12,11 +12,11 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/userform" element={<UserForm />} />
+        <Route path="/userform/:redirectto" element={<UserForm />} />
         <Route path="/aimatch" element={<AiMatch />} />
         <Route path="/quickmatch" element={<QuickMatch />} />
         <Route path="/makeRoom" element={<MakeRoom />} />
-        <Route path="/game/:roomId" element={<RoomGame />} />
+        <Route path="/game" element={<RoomGame />} />
       </Routes>
     </Router>
   );

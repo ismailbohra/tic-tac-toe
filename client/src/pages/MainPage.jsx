@@ -39,7 +39,7 @@ function MainPage() {
                     color: "white",
                   },
                 }}
-                onClick={()=>navigate('/aimatch')}
+                onClick={()=>navigate('/userform/aimatch')}
               >
                 <Typography
                   fontSize={{ xs: 17, md: 35 }}
@@ -69,7 +69,7 @@ function MainPage() {
                     color: "white",
                   },
                 }}
-                onClick={()=>navigate('/quickmatch')}
+                onClick={()=>navigate('/userform/quickmatch')}
               >
                 <Typography
                   fontSize={{ xs: 17, md: 35 }}
@@ -103,7 +103,7 @@ function MainPage() {
                       color: "white",
                     },
                   }}
-                  onClick={()=>navigate('/makeroom')}
+                  onClick={()=>navigate('/userform/makeroom')}
                 >
                   <Typography
                     fontSize={{ xs: 17, md: 35 }}

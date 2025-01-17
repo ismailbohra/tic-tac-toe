@@ -25,14 +25,15 @@ const MakeRoom = () => {
 
   const handleCreateRoom = () => {
     // Create a new room
+    const playerName = localStorage.getItem('playername');
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({playerName}),
     };
     fetch("http://localhost:4000/api/rooms/create", requestOptions)
       .then((response) => response.json())
-      .then((data) => navigate(`/game/${data.roomId}`));
+      .then((data) => navigate(`/game?roomId=${data.roomId}`));
   };
 
   const handleJoinRoom = () => {
@@ -72,6 +73,7 @@ const MakeRoom = () => {
           justifyContent="space-around"
           spacing={0}
           sx={{ padding: 0 }}
+          rowSpacing={5}
         >
           {/* Create Room Section */}
           <Grid item xs={12} md={5} sx={{ padding: 0 }}>
