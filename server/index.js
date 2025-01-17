@@ -1,13 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const http = require("http");
-const { initializeSocket } = require("./utils/socket");
+import express from "express";
+import cors from "cors";
+import http from "http";
+import { initializeSocket } from "./utils/socket.js";
+import roomRoutes from './routes/roomRoutes.js';
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = 4000;
-const roomRoutes = require('./routes/roomRoutes')
-
-import path from "path";
-const __dirname = path.resolve();
 
 app.use(cors());
 app.use(express.json());
