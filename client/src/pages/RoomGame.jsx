@@ -181,7 +181,7 @@ const RoomGame = () => {
             }}
           >
             {roomState.board.map((cell, index) => (
-              <Grid item xs={4} key={index}>
+              <Grid item xs={4} key={index} padding={0}>
                 <Paper
                   elevation={3}
                   onClick={() => handleMove(index)}
