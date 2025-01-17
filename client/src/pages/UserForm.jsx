@@ -3,16 +3,15 @@ import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function UserForm() {
-  // Initialize state with a fallback to an empty string
   const [name, setName] = useState(localStorage.getItem("playername") || "");
-  const [error, setError] = useState(false); // Error state for validation
-  const { redirectto } = useParams(); // Extract "redirectto" from URL params
-  const location = useLocation(); // Extract full location, including query params
+  const [error, setError] = useState(false);
+  const { redirectto } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    if (event.target.value) setError(false); // Clear error when user types
+    if (event.target.value) setError(false);
   };
 
   const handleContinueClick = () => {
@@ -24,9 +23,8 @@ function UserForm() {
     } else {
       localStorage.setItem("playername", name);
 
-      // Append query parameters to the redirect path
-      const queryParams = location.search; // Get query params (e.g., "?roomId=1007")
-      navigate(`/${redirectto}${queryParams}`); // Combine redirect path and query params
+      const queryParams = location.search;
+      navigate(`/${redirectto}${queryParams}`);
     }
   };
 
@@ -50,28 +48,28 @@ function UserForm() {
           variant="outlined"
           value={name}
           onChange={handleNameChange}
-          error={error} // Show error styling if error state is true
-          helperText={error ? "Name is required" : ""} // Display error message
+          error={error}
+          helperText={error ? "Name is required" : ""}
           sx={{
             maxWidth: "500px",
             marginBottom: "20px",
             width: "100%",
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "#1FB75B", // Border color
+                borderColor: "#1FB75B",
               },
               "&:hover fieldset": {
-                borderColor: "#1FB75B", // Border color on hover
+                borderColor: "#1FB75B",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "#1FB75B", // Border color on focus
+                borderColor: "#1FB75B",
               },
             },
             "& .MuiInputLabel-root": {
-              color: "#1FB75B", // Label color
+              color: "#1FB75B",
             },
             "& .MuiInputLabel-root.Mui-focused": {
-              color: "#1FB75B", // Label color when focused
+              color: "#1FB75B",
             },
           }}
         />

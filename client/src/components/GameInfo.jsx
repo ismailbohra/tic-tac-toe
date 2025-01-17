@@ -1,4 +1,3 @@
-// src/components/GameInfo.js
 import React from 'react';
 
 const GameInfo = ({ player, opponent, turn }) => {

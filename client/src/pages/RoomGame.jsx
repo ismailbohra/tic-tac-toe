@@ -16,7 +16,6 @@ import {
 } from "@mui/material";
 
 const RoomGame = () => {
-
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const roomId = queryParams.get("roomId");
@@ -37,10 +36,7 @@ const RoomGame = () => {
           body: JSON.stringify({ roomId, playerName }),
         };
 
-        const response = await fetch(
-          "/api/rooms/join",
-          requestOptions
-        );
+        const response = await fetch("/api/rooms/join", requestOptions);
 
         if (!response.ok) {
           throw new Error(`Server error: ${response.statusText}`);
@@ -68,7 +64,9 @@ const RoomGame = () => {
         });
       } catch (error) {
         console.error("Failed to join the room:", error);
-        alert("An error occurred while trying to join the room. Please try again.");
+        alert(
+          "An error occurred while trying to join the room. Please try again."
+        );
         navigate("/");
       }
     };
@@ -118,7 +116,8 @@ const RoomGame = () => {
 
   const copyInviteLink = () => {
     const inviteLink = `${window.location.origin}/userform/game?roomId=${roomId}`;
-    navigator.clipboard.writeText(inviteLink)
+    navigator.clipboard
+      .writeText(inviteLink)
       .then(() => alert("Invite link copied to clipboard!"))
       .catch((err) => console.error("Failed to copy link: ", err));
   };
@@ -165,8 +164,10 @@ const RoomGame = () => {
           >
             {roomState.turn === playerId
               ? "Your Turn"
-              : `${roomState.players.find((p) => p.id === roomState.turn)?.name || "Opponent"
-              }'s Turn`}
+              : `${
+                  roomState.players.find((p) => p.id === roomState.turn)
+                    ?.name || "Opponent"
+                }'s Turn`}
           </Typography>
           <Grid
             container
@@ -200,7 +201,9 @@ const RoomGame = () => {
                     border: "1px solid #1FB75B",
                     "&:hover": {
                       backgroundColor:
-                        cell || roomState.turn !== playerId ? "white" : "#1FB75B",
+                        cell || roomState.turn !== playerId
+                          ? "white"
+                          : "#1FB75B",
                       color:
                         cell || roomState.turn !== playerId ? "black" : "white",
                     },
@@ -214,13 +217,10 @@ const RoomGame = () => {
         </>
       )}
 
-      {/* Dialog for Game Over */}
       <Dialog open={showDialog} onClose={handleDialogClose}>
         <DialogTitle>Game Over</DialogTitle>
         <DialogContent>
-          {winner
-            ? `${winner} is the winner! 🎉`
-            : "It's a tie! Well played."}
+          {winner ? `${winner} is the winner! 🎉` : "It's a tie! Well played."}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">

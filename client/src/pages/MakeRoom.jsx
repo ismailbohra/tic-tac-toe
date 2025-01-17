@@ -24,12 +24,11 @@ const MakeRoom = () => {
   };
 
   const handleCreateRoom = () => {
-    // Create a new room
-    const playerName = localStorage.getItem('playername');
+    const playerName = localStorage.getItem("playername");
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({playerName}),
+      body: JSON.stringify({ playerName }),
     };
     fetch("/api/rooms/create", requestOptions)
       .then((response) => response.json())
@@ -41,8 +40,8 @@ const MakeRoom = () => {
       setError("Room ID cannot be empty!");
       return;
     }
-    // Join an existing room
-    navigate(`/game/${roomId}`);
+
+    navigate(`/game?roomId=${roomId}`);
   };
 
   return (
@@ -75,15 +74,14 @@ const MakeRoom = () => {
           sx={{ padding: 0 }}
           rowSpacing={5}
         >
-          {/* Create Room Section */}
           <Grid item xs={12} md={5} sx={{ padding: 0 }}>
             <Box
               sx={{
                 textAlign: "center",
                 display: "flex",
-                justifyContent: "center", // Centers the button horizontally
-                alignItems: "center", // Centers the button vertically
-                height: "100%", // Ensure the box takes full height of grid item
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
               }}
             >
               <Button
@@ -119,7 +117,6 @@ const MakeRoom = () => {
 
           <Divider orientation="vertical" flexItem />
 
-          {/* Join Room Section */}
           <Grid item xs={12} md={5} sx={{ padding: 0 }}>
             <Box sx={{ textAlign: "center" }}>
               <Typography
@@ -145,20 +142,20 @@ const MakeRoom = () => {
                   width: "100%",
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#1FB75B", // Border color
+                      borderColor: "#1FB75B",
                     },
                     "&:hover fieldset": {
-                      borderColor: "#1FB75B", // Border color on hover
+                      borderColor: "#1FB75B",
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#1FB75B", // Border color on focus
+                      borderColor: "#1FB75B",
                     },
                   },
                   "& .MuiInputLabel-root": {
-                    color: "#1FB75B", // Label color
+                    color: "#1FB75B",
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "#1FB75B", // Label color when focused
+                    color: "#1FB75B",
                   },
                 }}
               />

@@ -1,6 +1,6 @@
 const { Server } = require("socket.io");
 const { rooms, makeRoom } = require("./rooms");
-const {ai_move} = require("./aimove")
+const { ai_move } = require("./aimove");
 
 let currQuickRoom = null;
 const initializeSocket = (httpServer) => {
@@ -60,19 +60,18 @@ const initializeSocket = (httpServer) => {
       const room = rooms[roomId];
       let moveResult = room.makeMove(index, playerId);
       if (moveResult.success && moveResult.winner) {
-          console.log(`Game over: Player with ${moveResult.winner} wins.`);
-          io.to(roomId).emit("gameOver", { winner: moveResult.winner });
-        
+        console.log(`Game over: Player with ${moveResult.winner} wins.`);
+        io.to(roomId).emit("gameOver", { winner: moveResult.winner });
       }
-      const move = ai_move(room)
-      if(move == -1){
+      const move = ai_move(room);
+      if (move == -1) {
         io.to(roomId).emit("draw");
         return callback({ success: true });
       }
-      moveResult =room.makeMove(move, 2)
+      moveResult = room.makeMove(move, 2);
 
       io.to(roomId).emit("playerUpdate", room.getRoomState());
-      
+
       if (moveResult.success) {
         if (moveResult.winner) {
           console.log(`Game over: Player with ${moveResult.winner} wins.`);
@@ -95,7 +94,7 @@ const initializeSocket = (httpServer) => {
 
       if (moveResult.success) {
         const roomState = room.getRoomState();
-        io.to(roomId).emit("playerUpdate", roomState); // Emit the updated state to the room
+        io.to(roomId).emit("playerUpdate", roomState);
 
         if (moveResult.winner) {
           console.log(`Game over: Player with ${moveResult.winner} wins.`);
@@ -113,7 +112,7 @@ const initializeSocket = (httpServer) => {
       if (room) {
         room.exitPlayer(playerName);
         if (room.players.length === 0) {
-          delete rooms[roomId]; // Clean up empty room
+          delete rooms[roomId];
         } else {
           io.to(roomId).emit("playerUpdate", room.getRoomState());
         }

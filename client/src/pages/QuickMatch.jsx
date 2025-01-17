@@ -16,25 +16,23 @@ import {
 } from "@mui/material";
 
 const QuickMatch = () => {
-  const [roomId, setroomId] = useState(null)
+  const [roomId, setroomId] = useState(null);
   const [roomState, setRoomState] = useState(null);
   const [playerId, setPlayerId] = useState(null);
-  const [winner, setWinner] = useState(null); // Store winner's name or ID
-  const [showDialog, setShowDialog] = useState(false); // Control the dialog visibility
+  const [winner, setWinner] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
   const playerName = localStorage.getItem("playername");
   const navigate = useNavigate();
 
   useEffect(() => {
     const joinRoom = async () => {
       try {
-        
-
-        socket.emit("joinQuickRoom", {playerName }, (response) => {
+        socket.emit("joinQuickRoom", { playerName }, (response) => {
           if (!response.success) {
             alert("Room join failed. Redirecting to home.");
             navigate("/");
           } else {
-            console.log(response)
+            console.log(response);
             sessionStorage.setItem(`joined_${response.roomId}`, true);
             setPlayerId(response.playerId);
             setroomId(response.roomId);
@@ -51,7 +49,9 @@ const QuickMatch = () => {
         });
       } catch (error) {
         console.error("Failed to join the room:", error);
-        alert("An error occurred while trying to join the room. Please try again.");
+        alert(
+          "An error occurred while trying to join the room. Please try again."
+        );
         navigate("/");
       }
     };
@@ -96,10 +96,10 @@ const QuickMatch = () => {
 
   const handleDialogClose = () => {
     setShowDialog(false);
-    navigate("/"); // Redirect to home after the game ends
+    navigate("/");
   };
 
-  console.log(roomState)
+  console.log(roomState);
 
   return (
     <Container>
@@ -143,8 +143,10 @@ const QuickMatch = () => {
           >
             {roomState.turn === playerId
               ? "Your Turn"
-              : `${roomState.players.find((p) => p.id === roomState.turn)?.name || "Opponent"
-              }'s Turn`}
+              : `${
+                  roomState.players.find((p) => p.id === roomState.turn)
+                    ?.name || "Opponent"
+                }'s Turn`}
           </Typography>
           <Grid
             container
@@ -178,7 +180,9 @@ const QuickMatch = () => {
                     border: "1px solid #1FB75B",
                     "&:hover": {
                       backgroundColor:
-                        cell || roomState.turn !== playerId ? "white" : "#1FB75B",
+                        cell || roomState.turn !== playerId
+                          ? "white"
+                          : "#1FB75B",
                       color:
                         cell || roomState.turn !== playerId ? "black" : "white",
                     },
@@ -192,13 +196,10 @@ const QuickMatch = () => {
         </>
       )}
 
-      {/* Dialog for Game Over */}
       <Dialog open={showDialog} onClose={handleDialogClose}>
         <DialogTitle>Game Over</DialogTitle>
         <DialogContent>
-          {winner
-            ? `${winner} is the winner! 🎉`
-            : "It's a tie! Well played."}
+          {winner ? `${winner} is the winner! 🎉` : "It's a tie! Well played."}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">
@@ -206,7 +207,6 @@ const QuickMatch = () => {
           </Button>
         </DialogActions>
       </Dialog>
-
     </Container>
   );
 };
