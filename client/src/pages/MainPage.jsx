@@ -112,7 +112,7 @@ function MainPage() {
                     fontFamily={'"Acme", regular'}
                     sx={{ textTransform: "none" }}
                   >
-                    Invite a Friend
+                    Play With Friends
                   </Typography>
                 </Button>
               </Box>
