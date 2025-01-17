@@ -11,11 +11,7 @@ const getRoomById = (roomId) => {
 };
 
 // Add a new room
-const makeRoom = () => {
-  if (rooms[roomId]) {
-    return null;  // Room already exists
-  }
-  
+const makeRoom = () => {  
   const newRoom = new Room(roomId);
   rooms[roomId] = newRoom;
   roomId++;

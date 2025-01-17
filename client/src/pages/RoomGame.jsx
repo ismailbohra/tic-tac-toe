@@ -49,7 +49,7 @@ const RoomGame = () => {
         const data = await response.json();
         setPlayerId(data.playerId);
 
-        socket.emit("joinRoom", { roomId, playerName }, (response) => {
+        socket.emit("joinRoom", { roomId }, (response) => {
           if (!response.success) {
             alert("Room join failed. Redirecting to home.");
             navigate("/");
